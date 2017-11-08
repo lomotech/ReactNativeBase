@@ -31,4 +31,3 @@ class App extends Component {
 export default DebugConfig.useReactotron
   ? console.tron.overlay(App)
   : App
-
