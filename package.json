@@ -21,7 +21,14 @@
     "lint": "standard --verbose | snazzy",
     "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | xargs standard | snazzy",
     "fixcode": "standard --fix",
+    "precommit": "npm run git-hook",
+    "prepush": "npm run git-hook",
     "git-hook": "npm run lint -s && npm run test -s"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   },
   "dependencies": {
     "apisauce": "^0.14.0",
@@ -36,6 +43,7 @@
     "react-native-config": "^0.6.0",
     "react-native-device-info": "^0.12.1",
     "react-native-drawer": "^2.3.0",
+    "react-native-easy-grid": "^0.1.15",
     "react-native-i18n": "1.0.0",
     "react-native-vector-icons": "4.3.0",
     "react-navigation": "^1.0.0-beta.7",
