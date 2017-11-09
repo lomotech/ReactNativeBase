@@ -1,8 +1,10 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
+import Config from 'react-native-config'
 
 // our "constructor"
-const create = (baseURL = 'https://api.github.com/') => {
+console.log('test', Config.API_URL)
+const create = (baseURL = 'https://test.api') => {
   // ------
   // STEP 1
   // ------
@@ -34,9 +36,18 @@ const create = (baseURL = 'https://api.github.com/') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  const getRoot = () => api.get('')
-  const getRate = () => api.get('rate_limit')
-  const getUser = (username) => api.get('search/users', {q: username})
+  // const getRoot = () => api.get('')
+  // const getRate = () => api.get('rate_limit')
+  // const getUser = (username) => api.get('search/users', {q: username})
+  const setAuthToken = (userAuth) => api.setHeader('Authorization', 'Bearer ' + userAuth)
+  const removeAuthToken = () => api.setHeader('Authorization', '')
+  const login = (userAuth) => api.post('api/authenticate', userAuth)
+  const register = (user) => api.post('api/register', user)
+  const forgotPassword = (data) => api.post('api/account/reset_password/init', data, {headers: {'Content-Type': 'text/plain', 'Accept': 'application/json, text/plain, */*'}})
+
+  const getAccount = () => api.get('api/account')
+  const updateAccount = (account) => api.post('api/account', account)
+  const changePassword = (newPassword) => api.post('api/account/change_password', newPassword, {headers: {'Content-Type': 'text/plain', 'Accept': 'application/json, text/plain, */*'}})
 
   // ------
   // STEP 3
@@ -52,9 +63,14 @@ const create = (baseURL = 'https://api.github.com/') => {
   //
   return {
     // a list of the API functions from step 2
-    getRoot,
-    getRate,
-    getUser
+    setAuthToken,
+    removeAuthToken,
+    login,
+    register,
+    forgotPassword,
+    getAccount,
+    updateAccount,
+    changePassword
   }
 }
 

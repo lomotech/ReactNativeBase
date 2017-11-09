@@ -21,8 +21,8 @@ class LoginScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      username: 'reactnative@infinite.red',
-      password: 'password',
+      username: '',
+      password: '',
       visibleHeight: Metrics.screenHeight,
       topLogo: { width: Metrics.screenWidth - 40 }
     }
@@ -69,10 +69,10 @@ class LoginScreen extends React.Component {
   };
 
   handlePressLogin = () => {
-    // const { username, password } = this.state
-    // this.isAttempting = true
+    const { username, password } = this.state
+    this.isAttempting = true
     // attempt a login - a saga is listening to pick it up from here.
-    // this.props.attemptLogin(username, password);
+    this.props.attemptLogin(username, password)
     this.props.navigation.navigate('LaunchScreen')
   };
 

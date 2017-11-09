@@ -1,6 +1,9 @@
 import { put, select } from 'redux-saga/effects'
-import GithubActions from '../Redux/GithubRedux'
 import { is } from 'ramda'
+import GithubActions from '../Redux/GithubRedux'
+// import AppStateActions from '../Redux/AppStateRedux'
+import LoginActions from '../Redux/LoginRedux'
+import AccountActions from '../Redux/AccountRedux'
 
 // exported to make available for tests
 export const selectAvatar = (state) => state.github.avatar
@@ -37,4 +40,7 @@ export function * startup (action) {
   if (!is(String, avatar)) {
     yield put(GithubActions.userRequest('GantMan'))
   }
+
+  yield put(LoginActions.loginLoad())
+  yield put(AccountActions.accountRequest())
 }
