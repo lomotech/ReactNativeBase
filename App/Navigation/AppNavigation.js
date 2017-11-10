@@ -5,16 +5,18 @@ import { StackNavigator } from 'react-navigation'
 // screens identified by the router
 import Login from '../Containers/LoginScreen'
 import LaunchScreen from '../Containers/LaunchScreen'
+import LandingScreen from '../Containers/LandingScreen'
 import NavigationDrawer from './NavigationDrawer'
 
 const PrimaryNav = StackNavigator(
   {
     Login: { screen: Login },
+    Landing: { screen: LandingScreen },
     LaunchScreen: { screen: LaunchScreen },
     NavigationDrawer: { screen: NavigationDrawer }
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Landing',
     headerMode: 'none'
   }
 )
